@@ -2,10 +2,12 @@
 
 Experimental CUDA acceleration runtime for The Bibites 0.6.x.
 
-This repository is the mod source, not a copy of The Bibites. It does not
-include the base game, Unity assets, BepInEx binaries, saves, or third-party
-assemblies. Obtain a compatible copy of The Bibites separately. See
-[COMMUNITY_RELEASE.md](COMMUNITY_RELEASE.md) before publishing or installing.
+This folder contains the mod source and a portable EXE containing the public
+The Bibites 0.6.3.1 Windows x64 build. The launcher unpacks the game beside
+itself on first run; it is not a self-contained in-memory Unity executable.
+For the shortest installation path, start with the [repository home page](../README.md).
+For source builds and mod-only installation, see
+[COMMUNITY_RELEASE.md](COMMUNITY_RELEASE.md).
 
 ## 0.6.9 feeding change
 
@@ -26,13 +28,13 @@ The supplied and packaged base game is **The Bibites 0.6.3.1 Windows x64**.
 The code has not been rebased against 0.6.4 because no 0.6.4 game assembly was
 provided. It must not be described as an exact 0.6.4 fork yet.
 
-## 2026-10-01 menu and stability repair (still 0.6.8)
+## 2026-10-01 menu and stability repair inherited from 0.6.8
 
 The historical local 0.6.8 ready-to-run test bundle launched through
-`START BIBITES GPU.exe`. This source-only 0.6.9 folder does **not** contain
-that launcher or the game. After building and installing the mod into your
-own compatible game copy, use Settings > GPU Settings to check the selected
-device and world options.
+`START BIBITES GPU.exe`. The public 0.6.9 build instead uses
+[`Bibites GPU Fork 0.6.9 - PORTABLE.exe`](Bibites%20GPU%20Fork%200.6.9%20-%20PORTABLE.exe?raw=1).
+After it unpacks and launches, use Settings > GPU Settings to check the
+selected device and world options.
 
 - Restored the original Stats, Genes, Biology, Brain and Expanded Brain panel
   shells, toolbar controls and original-style species/tag browsing. Available
@@ -375,11 +377,13 @@ evolving brain complexity and spatial clustering can change throughput.
 
 ## Graphical mode
 
-Double-click `START BIBITES GPU.exe` in the ready-to-run package. Start a new
-simulation with native mode enabled to create a GPU-native world. This folder
-preserves the existing player's configuration; the current values are shown
-under Settings > GPU Settings. Native graphics FPS is independent of the
-requested simulation warp and is a frame-rate target, not a hardware guarantee.
+Double-click the portable 0.6.9 EXE linked above. Its first launch unpacks a
+versioned game folder beside the EXE, then opens the original graphics app
+with the mod. It deliberately starts without this project's prior personal
+configuration or saves. Start a new simulation with native mode enabled to
+create a GPU-native world. The active values are shown under Settings > GPU
+Settings. Native graphics FPS is independent of the requested simulation warp
+and is a frame-rate target, not a hardware guarantee.
 
 The normal Settings screen contains a `GPU settings` tab for selecting the
 CUDA device, population cap, starting population, graphics rate, native mode,
@@ -470,9 +474,8 @@ The complete native step remains inside one cooperative CUDA launch:
 6. reproduce, mutate, die, and recycle queued pellets; and
 7. repeat for the requested batch without per-tick CPU transfers.
 
-`Bibites GPU Engine.exe` is the reproducible console benchmark.
-`Bibites GPU World.exe` is the engineering viewer. Neither replaces the
-graphical game application in the ready-to-run package.
+The source can also build separate console benchmark and engineering-viewer
+tools. Neither replaces the graphical game application in the portable build.
 
 ## Build and test
 

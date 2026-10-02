@@ -2,10 +2,10 @@ BIBITES GPU FORK 0.6.9 - INSTALL AND COMPATIBILITY NOTES
 Updated 2026-10-03
 ======================================================
 
-GitHub source checkouts contain mod code only, not The Bibites game or its
-assets. See COMMUNITY_RELEASE.md for source build and mod-only installation.
-The ready-to-run package described below is a private local test artifact,
-not an archive to upload publicly.
+The GitHub repository includes a portable 0.6.9 EXE with the public 0.6.3.1
+game, loaders, and GPU mod. It also contains source for a mod-only build.
+See the repository README for the download and COMMUNITY_RELEASE.md for
+source build and mod-only installation.
 
 Compatibility
 -------------
@@ -19,14 +19,17 @@ RTX 5060 Ti available for the other project.
 
 Start
 -----
-The game and plugin are already installed together in this ready-to-run folder.
-If using an archive, extract its entire contents first. Keep the folder
-structure intact, then double-click "START BIBITES GPU.exe".
+Double-click "Bibites GPU Fork 0.6.9 - PORTABLE.exe" from a writable Windows
+folder. First launch unpacks the game into a versioned adjacent folder; later
+launches reuse it. No separate base-game download or installer is required
+for this portable build. Do not remove the extracted folder if it may contain
+local saves or other files you want to keep.
 
 Use Settings > GPU Settings in the original settings navigation to check the
-device, population, render and engine options. This repair preserves existing
-configuration and saves; it does not force a particular cap, startup population
-or Exact/Extreme profile.
+device, population, render and engine options. The portable bundle does not
+include this project's pre-existing personal configuration or saves. New
+users get the mod defaults; existing Windows profile data may still be used
+by the base game.
 
 Start a new world with native mode enabled for GPU-native simulation.
 Loading an existing stock save explicitly uses CPU compatibility for that

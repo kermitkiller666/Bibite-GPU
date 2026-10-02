@@ -21,6 +21,9 @@ BepInEx/
 *.bgfgpu
 *.tmp
 
+# Deliberate public portable build; keep all other game/build binaries ignored.
+!0.6.9/Bibites GPU Fork 0.6.9 - PORTABLE.exe
+
 # Local editor state
 .vs/
 .vscode/
