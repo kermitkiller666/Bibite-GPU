@@ -1,0 +1,142 @@
+BIBITES GPU FORK 0.6.9 - INSTALL AND COMPATIBILITY NOTES
+Updated 2026-10-03
+======================================================
+
+GitHub source checkouts contain mod code only, not The Bibites game or its
+assets. See COMMUNITY_RELEASE.md for source build and mod-only installation.
+The ready-to-run package described below is a private local test artifact,
+not an archive to upload publicly.
+
+Compatibility
+-------------
+This package uses The Bibites 0.6.3.1 Windows x64 supplied for this project.
+The GPU fork version is 0.6.9. It is not an upstream 0.6.4 rebase and
+is not a bit-identical implementation of the original simulation.
+
+The native backend requires a supported NVIDIA CUDA GPU. AMD/Intel support
+would require another backend. On this PC use the RTX 4070 Ti; leave the
+RTX 5060 Ti available for the other project.
+
+Start
+-----
+The game and plugin are already installed together in this ready-to-run folder.
+If using an archive, extract its entire contents first. Keep the folder
+structure intact, then double-click "START BIBITES GPU.exe".
+
+Use Settings > GPU Settings in the original settings navigation to check the
+device, population, render and engine options. This repair preserves existing
+configuration and saves; it does not force a particular cap, startup population
+or Exact/Extreme profile.
+
+Start a new world with native mode enabled for GPU-native simulation.
+Loading an existing stock save explicitly uses CPU compatibility for that
+session without changing the preference for future worlds.
+
+What settings affect
+--------------------
+Next world: selected GPU, population cap/start, native mode, Exact/Extreme
+profile, and nearby textured-Bibite limit.
+Live: graphics FPS and Dynamic Settings food density, fertility/regrowth and
+pellet energy. Native checkpoint loading restores its allocated world rather
+than applying a different next-world capacity.
+
+The native hard cap is 500,000 Bibites, but each world allocates for its chosen
+smaller cap. Higher caps, larger brains and graphics buffers require more VRAM.
+The settings estimate is approximate, not a guarantee that a particular world
+fits or reaches real-time speed. New worlds reserve at most 32,768 pellet
+slots; old native checkpoints keep their original reserve.
+
+The textured-Bibite setting accepts Off, 96, 256, 512, 1,024, 2,048, or a
+custom value up to 2,048. Other Bibites use the lightweight GPU silhouette.
+More original multi-part textures require more Unity CPU/rendering time.
+
+Controls
+--------
+Ctrl + Page Up / Page Down changes requested time warp.
+Bare Page Up / Page Down retains the original camera-speed controls.
+F5 quick-saves; F9 quick-loads. Space pauses/resumes.
+Keys 1-5 switch the selected Bibite's inspector tabs.
+Escape closes the current dialog before its parent menu.
+
+Ctrl + Shift + F8: stock-compatibility GPU brain validation
+Ctrl + Shift + F9: stock-compatibility GPU vision validation
+Ctrl + Shift + F10: stock-compatibility GPU brain fast mode
+
+Available warp targets are 1, 2, 3, 5, 10, 25, 50, 100, 250, 500, 1000,
+2500, 5000 and 10000x. Achieved speed depends on the current workload.
+The highest targets are intended for small worlds around 256 Bibites; they
+are not a promise of 10000x. Extreme reduces some update frequencies and
+trades temporal precision for throughput.
+
+Menus and original-game differences
+------------------------------------
+The original settings navigation, inspector panel shells, toolbar and
+species/tag browsing are retained. GPU Settings uses an opaque, scrollable,
+screen-bounded dialog; Close/Escape and input capture are handled explicitly.
+
+CPU menus read native data and queue selected actions to the GPU worker.
+Available information is real simulation state; missing stock-model values
+are labeled rather than invented. Failed actions show their reason.
+Friendly lineage and tag names survive native save/load.
+
+Above 8,192 living Bibites, chart distributions, many lists and picking use
+a capped presentation sample; headline population totals remain exact.
+Rectangle selection is a sampled read-only list, not full bulk editing.
+Full GPU rendering and the close-up texture budget are separate from that
+CPU presentation sample.
+
+Native organ details, complete historical family trees, original automatic
+speciation, structural NEAT mutation, meat/grabbing/attack behavior,
+directional pheromones and zone/tower behavior are not all implemented.
+Native notices explain unsupported controls. Restoring a menu does not add
+missing simulation biology. The original template editor edits saved templates
+for later placement, not the full selected live CUDA brain.
+Use stock compatibility where the original per-object model is required.
+
+Precision and memory
+--------------------
+World biology, state and neural accumulation use FP32. Inherited neural
+weights use FP16. The memory-slim layout shares immutable placed-brain
+topology and allocates its larger mutable state lazily.
+Unity graphics buffers and the first placed template can add substantial
+memory beyond a compact headless-world estimate.
+
+Saving and loading
+------------------
+Use the normal Save/Load menus or F5/F9.
+Native saves have a stock wrapper and a native companion:
+  <name>.zip
+  <name>.zip.bgfgpu
+Copy and back up both files together. GPU counts appear in save previews;
+friendly names are included in wrapper metadata. Native saves resume native
+state rather than converting every Bibite into a stock Unity object.
+
+Both files are staged before replacement, with rollback for ordinary I/O
+failures. This is not a crash-atomic two-file transaction across power loss.
+Keep backups. Missing companions/header errors are rejected early, but full
+native-payload validation occurs during load and can fail after the previous
+world has been retired. Save your current world before loading another.
+
+Current repair verification
+---------------------------
+The managed regression suite and both native CTest tests passed in the
+October 1 repair run. Bounded live checks covered settings/Escape, original
+panels, live food controls, friendly-tag round trips, native save/load and
+paused action failure feedback on the RTX 4070 Ti.
+
+Final 30-second samples: 1x held 60 FPS (17.6 ms maximum frame), while
+requested 1000x held 59.8 FPS (31.7 ms maximum). Neither measured a frame
+over 50 ms. The high-warp sample ended at 79,796 living and 142.2x achieved
+speed; the run later reached 131,072. These are smoke tests, not matched
+throughput benchmarks or a long-run stability guarantee.
+README.md and STATUS.md label older performance measurements as historical.
+Detailed results and remaining validation are included at:
+  docs/gui-stability-2026-10-01.md
+Final native reload, friendly-tag recovery and clean process exit passed.
+
+Removing or reverting the fork
+------------------------------
+Close the game and back up saves/configuration first. Restore a separate,
+untouched copy of the original game for a clean stock installation.
+Do not expect native checkpoint pairs to load into an unmodified stock game.
+Keep this folder and native saves available if you may want to resume them.

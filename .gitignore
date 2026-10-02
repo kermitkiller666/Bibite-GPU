@@ -1,0 +1,27 @@
+# Build products and local test outputs
+build*/
+**/bin/
+**/obj/
+*.zip
+*.7z
+*.pdb
+*.log
+benchmark-*.json
+
+# Third-party game and loader files must be acquired separately.
+The Bibites*/
+The Bibites_Data/
+BepInEx/
+*.exe
+*.dll
+*.asset
+*.assets
+*.save
+*.bgf
+*.bgfgpu
+*.tmp
+
+# Local editor state
+.vs/
+.vscode/
+*.user
