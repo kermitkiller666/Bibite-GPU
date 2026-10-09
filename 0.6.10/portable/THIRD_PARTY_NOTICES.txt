@@ -1,0 +1,16 @@
+The Bibites 0.6.3.1 and its Unity game files remain the property of their
+original creators. The public base game came from:
+https://thebibites.itch.io/the-bibites
+This unofficial GPU variant is not an upstream release or endorsed by the creators.
+
+BepInEx 5.4.23.5 (plugin loader)
+Source: https://github.com/BepInEx/BepInEx/tree/v5.4.23.5
+License: MIT; see LICENSES/BepInEx-LICENSE.txt in the extracted bundle.
+
+UnityDoorstop 4.5.0 (winhttp.dll loader)
+Source: https://github.com/NeighTools/UnityDoorstop/tree/v4.5.0
+License: LGPL 2.1; see LICENSES/UnityDoorstop-LICENSE.txt in the extracted bundle.
+
+Bibites GPU Fork 0.6.10 source and preview notes:
+https://github.com/kermitkiller666/Bibite-GPU/tree/main/0.6.10
+No general source-code license has been selected for the fork.

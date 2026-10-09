@@ -1,5 +1,32 @@
 # Bibites GPU Fork
 
+## Latest: 0.6.10 preview (October 9)
+
+**[Download the complete 0.6.10 PREVIEW.exe (about 73 MB)](0.6.10/Bibites%20GPU%20Fork%200.6.10%20-%20PREVIEW.exe?raw=1)**
+
+The new [source and setup notes](0.6.10/README.md) include 34-input,
+12+12-hidden, 15-output evolving brains, food-cap/zone fixes, meat/diet/action
+approximations, local dense-food queries, tiled contacts, specialized neural
+kernels, owned render snapshots and asynchronous compact checkpoints.
+The standard fused CUDA kernel remains the default. Windows x64 and a supported
+NVIDIA CUDA GPU/driver are required; AMD acceleration remains deferred.
+
+The October 9 code review bounded two graphics-callback waits to 15 seconds.
+Fresh core/native regression tests and the managed build passed on RTX 4070 Ti.
+[Review results and known limits](0.6.10/docs/code-check-2026-10-09.md) distinguish
+these checks from an in-game test: final Unity GUI/save-wrapper/FPS/shutdown
+validation is still outstanding, ecology is experimental, and original sprite
+parts are not fully GPU-instanced. This is a **preview**, not stock-game parity.
+
+Back up both save files and keep older builds: new checkpoints use **format 12**,
+which older binaries cannot read. The download uses the public 0.6.3.1 game,
+not a Patreon-only release or a 0.6.4 rebase. See [provenance/checksums](0.6.10/BUNDLE_MANIFEST.md).
+
+Portable EXE SHA-256:
+`AFA1C4F6587BE047C06B99C574B525FD93D316EA05FD0B7ADFEB58679808F732`
+
+## Previous public 0.6.9 build
+
 An **unofficial CUDA-accelerated variant of The Bibites** for Windows x64. This
 repository contains the GPU-fork source and a portable **0.6.9** game build.
 It is built on the creators' publicly released **The Bibites 0.6.3.1** from
